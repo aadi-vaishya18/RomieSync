@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HostelApp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#24303A; --harbor:#3A5A78; --harbor-dark:#2C4560; --ember:#E08E45; --ember-dark:#C97730;
+    --linen:#F4EFE6; --linen-deep:#EAE2D2; --moss:#2E7D5B; --clay:#B8442F; --paper:#FFFFFF; --ink-faint:#9AA1A8;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--linen);min-height:100vh;-webkit-font-smoothing:antialiased;}
+  @media (prefers-reduced-motion: reduce){ *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;} }
+
+  .shell{ max-width:460px; margin:0 auto; min-height:100vh; background:var(--linen); display:flex; flex-direction:column; position:relative; }
+  @media (min-width:520px){ .shell{ min-height:100vh; box-shadow:0 0 60px rgba(36,48,58,0.12); } body{ padding:24px 0; } }
+
+  /* ---------- Text inputs: Bug 1 fix, done explicitly and defensively ---------- */
+  .field-label{ font-size:12px; font-weight:700; color:var(--ink); opacity:0.65; margin:14px 0 5px; text-transform:uppercase; letter-spacing:0.04em; }
+  .field-input, .field-textarea, select.field-input{
+    width:100%; padding:12px 13px; border-radius:11px; border:1.5px solid var(--linen-deep);
+    font-family:'Inter',sans-serif; font-size:15px;
+    background:var(--paper) !important;      /* explicit: never inherit a dark/transparent bg */
+    color:var(--ink) !important;             /* explicit: always dark, readable text */
+    caret-color:var(--harbor);
+  }
+  .field-textarea{ resize:vertical; min-height:80px; line-height:1.5; }
+  .field-input::placeholder, .field-textarea::placeholder{ color:#8A93A0; opacity:1; }   /* readable, not invisible */
+  .field-input:focus, .field-textarea:focus{ outline:none; border-color:var(--harbor); box-shadow:0 0 0 3px rgba(58,90,120,0.15); background:var(--paper) !important; color:var(--ink) !important; }
+  .field-input:disabled, .field-textarea:disabled{ background:var(--linen-deep) !important; color:#7A8189 !important; cursor:not-allowed; border-color:var(--linen-deep); }
+  .field-hint{ font-size:11.5px; color:var(--ink); opacity:0.55; margin-top:5px; line-height:1.5; }
+  .field-error{ font-size:12px; color:var(--clay); margin-top:5px; font-weight:600; }
+
+  .btn{ font-family:'Inter',sans-serif; font-weight:700; font-size:14.5px; border:none; border-radius:12px; padding:13px 16px; cursor:pointer; display:inline-flex; align-items:center; justify-content:center; gap:8px; }
+  .btn-primary{ background:var(--harbor); color:#fff; width:100%; }
+  .btn-primary:hover{ background:var(--harbor-dark); }
+  .btn-primary:disabled{ background:var(--ink-faint); cursor:not-allowed; }
+  .btn-outline{ background:#fff; border:1.5px solid var(--harbor); color:var(--harbor); width:100%; cursor:pointer; }
+  .btn-ghost{ background:none; border:none; color:var(--ink); opacity:0.65; font-weight:600; cursor:pointer; padding:8px; }
+  .btn-danger-ghost{ background:none; border:none; color:var(--clay); font-weight:600; font-size:12.5px; padding:6px 8px; cursor:pointer; border-radius:8px; }
+
+  .card{ background:var(--paper); border:1px solid var(--linen-deep); border-radius:15px; padding:15px; margin-bottom:12px; }
+  .row-item{ display:flex; align-items:center; gap:12px; background:var(--paper); border:1px solid var(--linen-deep); border-radius:13px; padding:12px; margin-bottom:9px; }
+  .avatar{ width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:13px; flex-shrink:0; background:var(--harbor); }
+  .row-title{ font-size:14.5px; font-weight:700; color:var(--ink); }
+  .row-sub{ font-size:12px; color:var(--ink); opacity:0.6; margin-top:1px; }
+  .chip{ display:inline-block; font-size:10.5px; font-weight:700; padding:3px 9px; border-radius:20px; background:var(--linen-deep); color:var(--ink); opacity:0.85; }
+  .chip.admin{ background:var(--ember); color:#fff; opacity:1; }
+
+  .section-label{ font-size:13px; font-weight:700; color:var(--ink); opacity:0.8; margin:18px 0 8px; }
+  .empty-state{ text-align:center; padding:32px 16px; color:var(--ink); opacity:0.55; font-size:13.5px; line-height:1.6; }
+  .error-banner{ background:#FCEAE5; border:1px solid var(--clay); color:var(--clay); font-size:13px; font-weight:600; padding:10px 12px; border-radius:10px; margin-bottom:12px; }
+
+  /* ---------- Progress bar: single source of truth from backend `progress` object ---------- */
+  .progress-track{ background:var(--linen-deep); border-radius:8px; height:12px; overflow:hidden; margin:8px 0 4px; }
+  .progress-fill{ height:100%; background:var(--moss); border-radius:8px; transition:width 0.25s ease; }
+  .progress-text{ font-size:12.5px; font-weight:700; color:var(--ink); opacity:0.75; }
+
+  .checkbox{ width:25px; height:25px; border-radius:8px; border:2px solid #B7BEC6; display:flex; align-items:center; justify-content:center; flex-shrink:0; cursor:pointer; background:#fff; }
+  .checkbox.done{ background:var(--moss); border-color:var(--moss); }
+  .checkbox svg{ width:14px; height:14px; stroke:#fff; display:none; }
+  .checkbox.done svg{ display:block; }
+
+  /* ---------- Auth / hostel picker screens ---------- */
+  .auth-wrap{ flex:1; display:flex; flex-direction:column; justify-content:center; padding:36px 26px; }
+  .brand-row{ display:flex; align-items:center; gap:10px; margin-bottom:26px; }
+  .brand-mark{ width:38px; height:38px; border-radius:22%; background:linear-gradient(135deg,#4A6D8C,#2C4560); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .brand-name{ font-family:'Fraunces',serif; font-style:italic; font-weight:600; font-size:24px; color:var(--harbor); }
+  .auth-title{ font-family:'Fraunces',serif; font-weight:600; font-size:22px; margin:0 0 4px; }
+  .auth-sub{ font-size:13.5px; color:var(--ink); opacity:0.65; margin-bottom:20px; }
+  .auth-switch{ text-align:center; margin-top:18px; font-size:13.5px; }
+  .auth-switch a{ color:var(--harbor); font-weight:700; cursor:pointer; text-decoration:none; }
+
+  /* ---------- App shell (top bar + body + bottom nav) ---------- */
+  .topbar{ background:var(--harbor); color:#fff; padding:16px 18px 14px; flex-shrink:0; display:flex; align-items:center; gap:10px; }
+  .topbar .titles{ flex:1; min-width:0; }
+  .topbar .h-name{ font-family:'Fraunces',serif; font-weight:600; font-size:18px; }
+  .topbar .h-sub{ font-size:11.5px; opacity:0.75; margin-top:1px; }
+  .topbar-btn{ background:rgba(255,255,255,0.15); border:none; color:#fff; border-radius:8px; padding:6px 10px; font-size:12px; font-weight:700; cursor:pointer; }
+
+  .app-body{ flex:1; overflow-y:auto; padding:14px 16px 90px; }
+  .bottom-nav{ position:sticky; bottom:0; background:var(--paper); border-top:1px solid var(--linen-deep); display:flex; padding:8px 4px calc(8px + env(safe-area-inset-bottom)); flex-shrink:0; }
+  .nav-btn{ flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; background:none; border:none; cursor:pointer; font-size:10.5px; font-weight:700; color:var(--ink-faint); padding:4px 2px; }
+  .nav-btn.active{ color:var(--harbor); }
+  .nav-btn svg{ width:19px; height:19px; }
+
+  .modal-overlay{ position:fixed; inset:0; background:rgba(36,48,58,0.45); display:flex; align-items:flex-end; justify-content:center; z-index:30; }
+  @media (min-width:520px){ .modal-overlay{ align-items:center; } }
+  .modal-sheet{ background:var(--linen); width:100%; max-width:460px; border-radius:20px 20px 0 0; padding:20px; max-height:85vh; overflow-y:auto; position:relative; }
+  @media (min-width:520px){ .modal-sheet{ border-radius:18px; } }
+  .modal-title{ font-family:'Fraunces',serif; font-weight:600; font-size:19px; margin-bottom:2px; }
+  .modal-close{ position:absolute; right:14px; top:14px; background:none; border:none; cursor:pointer; opacity:0.5; }
+
+  /* ---------- Chat ---------- */
+  .chat-scroll{ display:flex; flex-direction:column; gap:10px; }
+  .msg-row{ display:flex; gap:9px; align-items:flex-start; }
+  .msg-body{ background:var(--paper); border:1px solid var(--linen-deep); border-radius:13px; padding:9px 12px; max-width:78%; }
+  .msg-name{ font-size:11.5px; font-weight:700; color:var(--harbor); margin-bottom:2px; }
+  .msg-text{ font-size:14px; color:var(--ink); line-height:1.4; word-wrap:break-word; }
+  .msg-time{ font-size:10px; color:var(--ink); opacity:0.45; margin-top:3px; }
+  .chat-composer{ display:flex; gap:8px; align-items:flex-end; position:sticky; bottom:0; background:var(--linen); padding-top:10px; }
+
+  .invite-box{ background:#fff; border:1.5px dashed var(--ember); border-radius:13px; padding:14px; text-align:center; }
+  .invite-code-text{ font-family:'Fraunces',serif; font-weight:600; font-size:26px; letter-spacing:0.06em; color:var(--harbor); margin:4px 0; }
+
+  .toast{ position:fixed; top:16px; left:50%; transform:translateX(-50%); background:var(--ink); color:#fff; font-size:12.5px; font-weight:600; padding:9px 16px; border-radius:20px; z-index:60; opacity:0; pointer-events:none; transition:opacity 0.25s ease; max-width:80%; text-align:center; }
+  .toast.show{ opacity:1; }
+</style>
+</head>
+<body>
+<div class="shell" id="shell">
+  <div style="flex:1;display:flex;align-items:center;justify-content:center;color:var(--ink);opacity:0.5;font-size:13px;">Loading HostelApp…</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+"use strict";
+
+const API_BASE = "http://localhost:4000"; // Start the backend (node server.js) before opening this file.
+
+let state = {
+  token: null,
+  user: null,
+  hostels: [],
+  currentHostelId: null,
+  currentHostel: null,
+  myRole: null,
+  view: "auth",       // auth | hostelPicker | app
+  authMode: "login",  // login | signup
+  subview: "home",    // home | room | chat | members | profile
+  currentRoomId: null,
+  modal: null,
+  error: null,
+  loading: false,
+};
+
+let chatPollTimer = null;
+
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function fmtTime(iso){ try{ return new Date(iso).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}); } catch(e){ return ""; } }
+function initials(name){ const p=(name||"?").trim().split(/\s+/); return (p[0][0]+(p[1]?p[1][0]:"")).toUpperCase(); }
+
+function toast(msg){
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(()=> el.classList.remove("show"), 2200);
+}
+
+async function api(method, path, body){
+  const headers = { "Content-Type": "application/json" };
+  if (state.token) headers["Authorization"] = "Bearer " + state.token;
+  let res, json;
+  try{
+    res = await fetch(API_BASE + path, { method, headers, body: body ? JSON.stringify(body) : undefined });
+    json = await res.json().catch(()=>({}));
+  }catch(e){
+    throw new Error("Can't reach the backend. Is it running? (node server.js on " + API_BASE + ")");
+  }
+  if (!res.ok) throw new Error(json.error || ("Request failed (" + res.status + ")"));
+  return json;
+}
+
+const ICONS = {
+  home:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>',
+  chat:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.4A8.5 8.5 0 1 1 21 11.5Z"/></svg>',
+  members:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.5 3-5.5 6.5-5.5s6.5 2 6.5 5.5"/><circle cx="17" cy="8.5" r="2.7"/><path d="M15.5 14.7c2.6.3 4.9 2.1 4.9 5.3"/></svg>',
+  profile:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>',
+  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
+  chevron:'<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>',
+  x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>',
+  send:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/></svg>',
+};
+
+function brandMark(size){
+  return `<div class="brand-mark" style="width:${size}px;height:${size}px;"><svg width="${Math.round(size*0.6)}" height="${Math.round(size*0.6)}" viewBox="0 0 100 100"><path d="M24 62 L50 32 L76 62" fill="none" stroke="#F4EFE6" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 64.5 L83 64.5" fill="none" stroke="#F4EFE6" stroke-width="9" stroke-linecap="round"/><circle cx="78" cy="67" r="15" fill="#E08E45" stroke="#2C4560" stroke-width="5"/></svg></div>`;
+}
+
+// =====================================================================
+// AUTH SCREEN
+// =====================================================================
+function renderAuth(){
+  const isLogin = state.authMode === "login";
+  return `
+    <div class="auth-wrap">
+      <div class="brand-row">${brandMark(38)}<div class="brand-name">HostelApp</div></div>
+      <div class="auth-title">${isLogin ? "Welcome back" : "Create your account"}</div>
+      <div class="auth-sub">${isLogin ? "Log in to see your hostel and rooms." : "You'll join or create a hostel group next."}</div>
+      ${state.error ? `<div class="error-banner">${esc(state.error)}</div>` : ""}
+      <form id="authForm">
+        ${!isLogin ? `
+          <div class="field-label">Name</div>
+          <input class="field-input" id="authName" type="text" placeholder="Your full name" autocomplete="name" />
+        ` : ""}
+        <div class="field-label">Email</div>
+        <input class="field-input" id="authEmail" type="email" placeholder="you@example.com" autocomplete="email" />
+        <div class="field-label">Password</div>
+        <input class="field-input" id="authPassword" type="password" placeholder="${isLogin ? "Your password" : "At least 6 characters"}" autocomplete="${isLogin ? "current-password" : "new-password"}" />
+        <button class="btn btn-primary" type="submit" style="margin-top:18px;" ${state.loading ? "disabled" : ""}>${state.loading ? "Please wait…" : (isLogin ? "Log In" : "Sign Up")}</button>
+      </form>
+      <div class="auth-switch">
+        ${isLogin ? `New here? <a data-switch-auth="signup">Create an account</a>` : `Already have an account? <a data-switch-auth="login">Log in</a>`}
+      </div>
+    </div>
+  `;
+}
+
+// =====================================================================
+// HOSTEL PICKER
+// =====================================================================
+function renderHostelPicker(){
+  return `
+    <div class="topbar"><div class="titles"><div class="h-name">HostelApp</div><div class="h-sub">Hi ${esc(state.user.name.split(" ")[0])}</div></div>
+      <button class="topbar-btn" id="logoutBtn2">Log out</button>
+    </div>
+    <div class="app-body">
+      ${state.error ? `<div class="error-banner">${esc(state.error)}</div>` : ""}
+      <div class="section-label">Your Hostels</div>
+      ${state.hostels.length === 0 ? `<div class="empty-state">You're not in a hostel group yet.<br/>Create one, or join with an invite code.</div>` : ""}
+      ${state.hostels.map(h => `
+        <div class="row-item" data-open-hostel="${h.id}" style="cursor:pointer;">
+          <div class="avatar">${esc(initials(h.name))}</div>
+          <div style="flex:1;">
+            <div class="row-title">${esc(h.name)} ${h.myRole === 'admin' ? '<span class="chip admin">Admin</span>' : ''}</div>
+            <div class="row-sub">Tap to open</div>
+          </div>
+          ${ICONS.chevron}
+        </div>
+      `).join("")}
+
+      <div class="section-label">Create a New Hostel</div>
+      <div class="card">
+        <input class="field-input" id="newHostelName" type="text" placeholder="e.g. ABC Hostel" />
+        <button class="btn btn-primary" id="createHostelBtn" style="margin-top:10px;">Create Hostel</button>
+      </div>
+
+      <div class="section-label">Join with an Invite Code</div>
+      <div class="card">
+        <input class="field-input" id="joinCodeInput" type="text" placeholder="e.g. AB12CD" style="text-transform:uppercase;" />
+        <button class="btn btn-outline" id="joinHostelBtn" style="margin-top:10px;">Join Hostel</button>
+      </div>
+    </div>
+  `;
+}
+
+// =====================================================================
+// APP SHELL
+// =====================================================================
+function renderApp(){
+  const titles = { home:"Home", chat:"Group Discussion", members:"Members", profile:"Profile", room:"Room" };
+  let body = "";
+  if (state.subview === "home") body = renderHome();
+  else if (state.subview === "room") body = renderRoom();
+  else if (state.subview === "chat") body = renderChat();
+  else if (state.subview === "members") body = renderMembers();
+  else body = renderProfile();
+
+  return `
+    <div class="topbar">
+      ${state.subview === "room" ? `<button class="topbar-btn" data-nav="home">‹ Back</button>` : brandMark(30)}
+      <div class="titles">
+        <div class="h-name">${state.subview === "room" && state._roomDetail ? esc(state._roomDetail.room.name) : esc(state.currentHostel?.name || "")}</div>
+        <div class="h-sub">${titles[state.subview]}</div>
+      </div>
+    </div>
+    <div class="app-body" id="appBody">${body}</div>
+    <div class="bottom-nav">
+      ${navBtn("home","home","Home")}
+      ${navBtn("chat","chat","Discuss")}
+      ${navBtn("members","members","Members")}
+      ${navBtn("profile","profile","Profile")}
+    </div>
+  `;
+}
+function navBtn(key, icon, label){
+  const active = state.subview === key || (key === "home" && state.subview === "room");
+  return `<button class="nav-btn ${active ? "active" : ""}" data-nav="${key}">${ICONS[icon]}<span>${label}</span></button>`;
+}
+
+function renderHome(){
+  const rooms = state._rooms || [];
+  return `
+    ${state.error ? `<div class="error-banner">${esc(state.error)}</div>` : ""}
+    <div class="section-label">Rooms in ${esc(state.currentHostel?.name || "")}</div>
+    ${rooms.length === 0 ? `<div class="empty-state">No rooms yet.${state.myRole==='admin' ? ' Create the first one from Profile.' : ' Ask your hostel admin to create one.'}</div>` : ""}
+    ${rooms.map(r => `
+      <div class="row-item" data-open-room="${r.id}" style="cursor:pointer;align-items:stretch;flex-direction:column;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div class="avatar" style="background:var(--ember);">${esc(initials(r.name))}</div>
+          <div style="flex:1;">
+            <div class="row-title">${esc(r.name)}</div>
+            <div class="row-sub">${r.memberCount} member${r.memberCount===1?"":"s"}</div>
+          </div>
+          ${ICONS.chevron}
+        </div>
+        <div class="progress-track"><div class="progress-fill" style="width:${r.progress.percent}%;"></div></div>
+        <div class="progress-text">${r.progress.completed}/${r.progress.total} work done · ${r.progress.percent}%</div>
+      </div>
+    `).join("")}
+  `;
+}
+
+function renderRoom(){
+  const d = state._roomDetail;
+  if (!d) return `<div class="empty-state">Loading room…</div>`;
+  const p = d.progress;
+  return `
+    ${state.error ? `<div class="error-banner">${esc(state.error)}</div>` : ""}
+    ${!d.isMember ? `
+      <div class="card" style="text-align:center;">
+        <div class="row-title" style="margin-bottom:8px;">You're not in this room yet</div>
+        <button class="btn btn-primary" id="joinRoomBtn">Join ${esc(d.room.name)}</button>
+      </div>
+    ` : ""}
+
+    <div class="card">
+      <div class="progress-text" style="font-size:14px;">${p.completed}/${p.total} work done</div>
+      <div class="progress-track"><div class="progress-fill" style="width:${p.percent}%;"></div></div>
+      <div class="progress-text">${p.percent}% complete</div>
+    </div>
+
+    <div class="section-label">Members</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px;">
+      ${d.members.map(m => `<span class="chip">${esc(m.name.split(" ")[0])}</span>`).join("") || '<span class="row-sub">No members yet.</span>'}
+    </div>
+
+    <div class="section-label">Tasks</div>
+    ${d.tasks.length === 0 ? `<div class="empty-state">No tasks yet.<br/>Add your first task.</div>` : ""}
+    ${d.tasks.map(t => `
+      <div class="row-item">
+        <div class="checkbox ${t.completed ? "done" : ""}" data-toggle-task="${t.id}" style="${d.isMember ? "" : "opacity:0.4;pointer-events:none;"}">${ICONS.check}</div>
+        <div style="flex:1;">
+          <div class="row-title" style="${t.completed ? "text-decoration:line-through;opacity:0.5;" : ""}">${esc(t.title)}</div>
+        </div>
+        ${d.isMember ? `<button class="btn-danger-ghost" data-delete-task="${t.id}">Delete</button>` : ""}
+      </div>
+    `).join("")}
+
+    ${d.isMember ? `
+      <div style="display:flex;gap:8px;margin-top:10px;">
+        <input class="field-input" id="newTaskInput" type="text" placeholder="Add a task…" style="flex:1;" />
+        <button class="btn btn-primary" id="addTaskBtn" style="width:auto;padding:12px 18px;">Add</button>
+      </div>
+    ` : ""}
+  `;
+}
+
+function renderChat(){
+  const msgs = state._messages || [];
+  return `
+    ${state.error ? `<div class="error-banner">${esc(state.error)}</div>` : ""}
+    <div class="chat-scroll" id="chatScroll">
+      ${msgs.length === 0 ? `<div class="empty-state">No discussions yet.<br/>Start the conversation.</div>` : ""}
+      ${msgs.map(m => `
+        <div class="msg-row">
+          <div class="avatar" style="width:30px;height:30px;font-size:11px;flex-shrink:0;">${esc(initials(m.userName))}</div>
+          <div class="msg-body">
+            <div class="msg-name">${esc(m.userName)}</div>
+            <div class="msg-text">${esc(m.message)}</div>
+            <div class="msg-time">${fmtTime(m.createdAt)}</div>
+          </div>
+        </div>
+      `).join("")}
+    </div>
+    <div class="chat-composer">
+      <textarea class="field-textarea" id="chatInput" placeholder="Message the hostel group…" rows="1" style="flex:1;min-height:44px;"></textarea>
+      <button class="btn btn-primary" id="sendChatBtn" style="width:auto;padding:12px 16px;">${ICONS.send}</button>
+    </div>
+  `;
+}
+
+function renderMembers(){
+  const members = state._members || [];
+  return `
+    ${state.error ? `<div class="error-banner">${esc(state.error)}</div>` : ""}
+    <div class="section-label">${members.length} Member${members.length===1?"":"s"}</div>
+    ${members.map(m => `
+      <div class="row-item">
+        <div class="avatar">${esc(initials(m.name))}</div>
+        <div style="flex:1;">
+          <div class="row-title">${esc(m.name)} ${m.role === 'admin' ? '<span class="chip admin">Admin</span>' : ''}</div>
+          <div class="row-sub">${esc(m.email)}</div>
+        </div>
+      </div>
+    `).join("")}
+  `;
+}
+
+function renderProfile(){
+  return `
+    ${state.error ? `<div class="error-banner">${esc(state.error)}</div>` : ""}
+    <div class="card" style="display:flex;align-items:center;gap:12px;">
+      <div class="avatar" style="width:44px;height:44px;font-size:15px;">${esc(initials(state.user.name))}</div>
+      <div>
+        <div class="row-title">${esc(state.user.name)}</div>
+        <div class="row-sub">${esc(state.user.email)}</div>
+      </div>
+    </div>
+
+    <div class="section-label">This Hostel</div>
+    <div class="card">
+      <div class="row-title">${esc(state.currentHostel?.name || "")}</div>
+      <div class="row-sub">Your role: ${state.myRole === 'admin' ? 'Admin' : 'Member'}</div>
+    </div>
+
+    ${state.myRole === 'admin' ? `
+      <div class="section-label">Admin</div>
+      <div class="card" id="inviteCodeCard">
+        <div class="row-sub">Invite Code</div>
+        <div class="invite-code-text">${state._inviteCode || "••••••"}</div>
+        <div class="field-hint">Share this code so others can join ${esc(state.currentHostel?.name || "this hostel")}.</div>
+      </div>
+      <div class="card">
+        <div class="field-label" style="margin-top:0;">Create a Room</div>
+        <input class="field-input" id="newRoomName" type="text" placeholder="e.g. Room 105" />
+        <button class="btn btn-primary" id="createRoomBtn" style="margin-top:10px;">Create Room</button>
+      </div>
+    ` : ""}
+
+    <div class="section-label">Switch Hostel</div>
+    <button class="btn btn-outline" id="switchHostelBtn">Choose a Different Hostel</button>
+
+    <div class="section-label">Session</div>
+    <button class="btn btn-ghost" id="logoutBtn" style="width:100%;justify-content:center;border:1.5px dashed var(--linen-deep);border-radius:12px;padding:12px;">Log Out</button>
+  `;
+}
+
+// =====================================================================
+// RENDER DISPATCH
+// =====================================================================
+function render(){
+  const shell = document.getElementById("shell");
+  let html = "";
+  if (state.view === "auth") html = renderAuth();
+  else if (state.view === "hostelPicker") html = renderHostelPicker();
+  else html = renderApp();
+  shell.innerHTML = html;
+  attachHandlers();
+  if (state.subview === "chat" && state.view === "app") {
+    const el = document.getElementById("chatScroll");
+    if (el) el.scrollTop = el.scrollHeight;
+  }
+}
+
+// =====================================================================
+// DATA LOADERS
+// =====================================================================
+async function loadHostels(){
+  const { hostels } = await api("GET", "/hostels/mine");
+  state.hostels = hostels;
+}
+
+async function enterHostel(hostelId){
+  state.error = null;
+  const detail = await api("GET", `/hostels/${hostelId}`);
+  state.currentHostelId = hostelId;
+  state.currentHostel = detail.hostel;
+  state.myRole = detail.myRole;
+  state.view = "app";
+  state.subview = "home";
+  state._inviteCode = null;
+  await loadRooms();
+  render();
+}
+
+async function loadRooms(){
+  const { rooms } = await api("GET", `/hostels/${state.currentHostelId}/rooms`);
+  state._rooms = rooms;
+}
+
+async function loadRoomDetail(roomId){
+  state.currentRoomId = roomId;
+  const detail = await api("GET", `/rooms/${roomId}`);
+  state._roomDetail = detail;
+}
+
+async function loadMembers(){
+  const { members } = await api("GET", `/hostels/${state.currentHostelId}/members`);
+  state._members = members;
+}
+
+async function loadMessages(){
+  const { messages } = await api("GET", `/hostels/${state.currentHostelId}/messages`);
+  state._messages = messages;
+}
+
+async function loadInviteCodeIfAdmin(){
+  if (state.myRole !== "admin") return;
+  try {
+    const { inviteCode } = await api("GET", `/hostels/${state.currentHostelId}/invite-code`);
+    state._inviteCode = inviteCode;
+  } catch(e){ /* non-fatal */ }
+}
+
+function startChatPolling(){
+  stopChatPolling();
+  chatPollTimer = setInterval(async () => {
+    if (state.subview !== "chat") return stopChatPolling();
+    try {
+      const before = (state._messages || []).length;
+      await loadMessages();
+      if (state._messages.length !== before) render();
+    } catch(e){ /* silent — don't spam errors on background polls */ }
+  }, 3500);
+}
+function stopChatPolling(){ if (chatPollTimer) { clearInterval(chatPollTimer); chatPollTimer = null; } }
+
+// =====================================================================
+// EVENT HANDLERS
+// =====================================================================
+function attachHandlers(){
+  const shell = document.getElementById("shell");
+
+  // --- Auth ---
+  const authForm = document.getElementById("authForm");
+  if (authForm){
+    authForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      state.error = null;
+      const email = document.getElementById("authEmail").value.trim();
+      const password = document.getElementById("authPassword").value;
+      const isLogin = state.authMode === "login";
+      const name = isLogin ? null : document.getElementById("authName").value.trim();
+
+      if (!email || !password || (!isLogin && !name)) {
+        state.error = "Please fill in all fields.";
+        return render();
+      }
+      state.loading = true; render();
+      try{
+        const result = isLogin
+          ? await api("POST", "/auth/login", { email, password })
+          : await api("POST", "/auth/signup", { name, email, password });
+        state.token = result.token;
+        state.user = result.user;
+        state.loading = false;
+        await loadHostels();
+        state.view = state.hostels.length ? "app" : "hostelPicker";
+        if (state.hostels.length) {
+          await enterHostel(state.hostels[0].id);
+        } else {
+          render();
+        }
+      }catch(err){
+        state.loading = false;
+        state.error = err.message;
+        render();
+      }
+    });
+  }
+  shell.querySelectorAll("[data-switch-auth]").forEach(el => {
+    el.addEventListener("click", () => { state.authMode = el.getAttribute("data-switch-auth"); state.error = null; render(); });
+  });
+
+  // --- Hostel picker ---
+  const logoutBtn2 = document.getElementById("logoutBtn2");
+  if (logoutBtn2) logoutBtn2.addEventListener("click", doLogout);
+
+  shell.querySelectorAll("[data-open-hostel]").forEach(el => {
+    el.addEventListener("click", async () => {
+      try { await enterHostel(el.getAttribute("data-open-hostel")); }
+      catch(err){ state.error = err.message; render(); }
+    });
+  });
+
+  const createHostelBtn = document.getElementById("createHostelBtn");
+  if (createHostelBtn){
+    createHostelBtn.addEventListener("click", async () => {
+      const name = document.getElementById("newHostelName").value.trim();
+      if (!name) { toast("Enter a hostel name"); return; }
+      try{
+        const { hostel } = await api("POST", "/hostels", { name });
+        await loadHostels();
+        await enterHostel(hostel.id);
+        toast("Hostel created");
+      }catch(err){ state.error = err.message; render(); }
+    });
+  }
+
+  const joinHostelBtn = document.getElementById("joinHostelBtn");
+  if (joinHostelBtn){
+    joinHostelBtn.addEventListener("click", async () => {
+      const code = document.getElementById("joinCodeInput").value.trim();
+      if (!code) { toast("Enter an invite code"); return; }
+      try{
+        const { hostel } = await api("POST", "/hostels/join", { inviteCode: code });
+        await loadHostels();
+        await enterHostel(hostel.id);
+        toast("Joined hostel");
+      }catch(err){ state.error = err.message; render(); }
+    });
+  }
+
+  // --- Bottom nav ---
+  shell.querySelectorAll("[data-nav]").forEach(el => {
+    el.addEventListener("click", async () => {
+      const key = el.getAttribute("data-nav");
+      state.error = null;
+      stopChatPolling();
+      try{
+        if (key === "home"){ await loadRooms(); state.subview = "home"; }
+        else if (key === "chat"){ await loadMessages(); state.subview = "chat"; startChatPolling(); }
+        else if (key === "members"){ await loadMembers(); state.subview = "members"; }
+        else if (key === "profile"){ await loadInviteCodeIfAdmin(); state.subview = "profile"; }
+        render();
+      }catch(err){ state.error = err.message; render(); }
+    });
+  });
+
+  // --- Home: open a room ---
+  shell.querySelectorAll("[data-open-room]").forEach(el => {
+    el.addEventListener("click", async () => {
+      state.error = null;
+      try{
+        await loadRoomDetail(el.getAttribute("data-open-room"));
+        state.subview = "room";
+        render();
+      }catch(err){ state.error = err.message; render(); }
+    });
+  });
+
+  // --- Room: join / add task / toggle / delete ---
+  const joinRoomBtn = document.getElementById("joinRoomBtn");
+  if (joinRoomBtn){
+    joinRoomBtn.addEventListener("click", async () => {
+      try{
+        await api("POST", `/rooms/${state.currentRoomId}/join`, {});
+        await loadRoomDetail(state.currentRoomId);
+        await loadRooms();
+        render();
+        toast("Joined room");
+      }catch(err){ state.error = err.message; render(); }
+    });
+  }
+  const addTaskBtn = document.getElementById("addTaskBtn");
+  if (addTaskBtn){
+    addTaskBtn.addEventListener("click", async () => {
+      const input = document.getElementById("newTaskInput");
+      const title = input.value.trim();
+      if (!title) { toast("Enter a task"); return; }
+      try{
+        await api("POST", `/rooms/${state.currentRoomId}/tasks`, { title });
+        await loadRoomDetail(state.currentRoomId);
+        render();
+      }catch(err){ state.error = err.message; render(); }
+    });
+  }
+  shell.querySelectorAll("[data-toggle-task]").forEach(el => {
+    el.addEventListener("click", async () => {
+      const taskId = el.getAttribute("data-toggle-task");
+      try{
+        await api("PATCH", `/rooms/${state.currentRoomId}/tasks/${taskId}`, {});
+        await loadRoomDetail(state.currentRoomId);
+        render();
+      }catch(err){ state.error = err.message; render(); }
+    });
+  });
+  shell.querySelectorAll("[data-delete-task]").forEach(el => {
+    el.addEventListener("click", async () => {
+      const taskId = el.getAttribute("data-delete-task");
+      try{
+        await api("DELETE", `/rooms/${state.currentRoomId}/tasks/${taskId}`);
+        await loadRoomDetail(state.currentRoomId);
+        render();
+      }catch(err){ state.error = err.message; render(); }
+    });
+  });
+
+  // --- Chat send ---
+  const sendChatBtn = document.getElementById("sendChatBtn");
+  if (sendChatBtn){
+    sendChatBtn.addEventListener("click", sendChatMessage);
+  }
+  const chatInput = document.getElementById("chatInput");
+  if (chatInput){
+    chatInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendChatMessage(); }
+    });
+  }
+  async function sendChatMessage(){
+    const input = document.getElementById("chatInput");
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = "";
+    try{
+      await api("POST", `/hostels/${state.currentHostelId}/messages`, { message: text });
+      await loadMessages();
+      render();
+    }catch(err){ state.error = err.message; render(); }
+  }
+
+  // --- Profile: create room, switch hostel, logout ---
+  const createRoomBtn = document.getElementById("createRoomBtn");
+  if (createRoomBtn){
+    createRoomBtn.addEventListener("click", async () => {
+      const name = document.getElementById("newRoomName").value.trim();
+      if (!name) { toast("Enter a room name"); return; }
+      try{
+        await api("POST", `/hostels/${state.currentHostelId}/rooms`, { name });
+        toast("Room created");
+        document.getElementById("newRoomName").value = "";
+      }catch(err){ state.error = err.message; render(); }
+    });
+  }
+  const switchHostelBtn = document.getElementById("switchHostelBtn");
+  if (switchHostelBtn){
+    switchHostelBtn.addEventListener("click", async () => {
+      await loadHostels();
+      state.view = "hostelPicker";
+      state.error = null;
+      render();
+    });
+  }
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) logoutBtn.addEventListener("click", doLogout);
+}
+
+function doLogout(){
+  stopChatPolling();
+  state = { token:null, user:null, hostels:[], currentHostelId:null, currentHostel:null, myRole:null,
+            view:"auth", authMode:"login", subview:"home", currentRoomId:null, modal:null, error:null, loading:false };
+  render();
+}
+
+// --- Boot ---
+render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+[
+    {
+        "merged": "com.roomiesync.app-mergeDebugResources-38:/layout/fragment_settle.xml",
+        "source": "com.roomiesync.app-main-41:/layout/fragment_settle.xml"
+    },
+    {
+        "merged": "com.roomiesync.app-mergeDebugResources-38:/layout/item_flatmate.xml",
+        "source": "com.roomiesync.app-main-41:/layout/item_flatmate.xml"
+    },
+    {
+        "merged": "com.roomiesync.app-mergeDebugResources-38:/layout/item_balance_actionable.xml",
+        "source": "com.roomiesync.app-main-41:/layout/item_balance_actionable.xml"
+    },
+    {
+        "merged": "com.roomiesync.app-mergeDebugResources-38:/layout/sheet_add_chore.xml",
+        "source": "com.roomiesync.app-main-41:/layout/sheet_add_chore.xml"
+    },
+    {
+        "merged": "com.roomiesync.app-mergeDebugResources-38:/layout/item_chore.xml",
+        "source": "com.roomiesync.app-main-41:/layout/item_chore.xml"
+    },
+    {
+        "merged": "com.roomiesync.app-mergeDebugResources-38:/layout/sheet_add_expense.xml",
+        "source": "com.roomiesync.app-main-41:/layout/sheet_add_expense.xml"
+    },
+    {
+        "merged": "com.roomiesync.app-mergeDebugResources-38:/layout/item_workload_bar.xml",
+        "source": "com.roomiesync.app-main-41:/layout/item_workload_bar.xml"
+    },
+    {
+        "merged": "com.roomiesync.app-mergeDebugResources-38:/layout/fragment_home.xml",
+        "source": "com.roomiesync.app-main-41:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "com.roomiesync.app-mergeDebugResources-38:/layout/item_balance.xml",
+        "source": "com.roomiesync.app-main-41:/layout/item_balance.xml"
+    },
+    {
+        "merged": "com.roomiesync.app-mergeDebugResources-38:/layout/activity_main.xml",
+        "source": "com.roomiesync.app-main-41:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.roomiesync.app-mergeDebugResources-38:/layout/sheet_add_flatmate.xml",
+        "source": "com.roomiesync.app-main-41:/layout/sheet_add_flatmate.xml"
+    },
+    {
+        "merged": "com.roomiesync.app-mergeDebugResources-38:/layout/fragment_expenses.xml",
+        "source": "com.roomiesync.app-main-41:/layout/fragment_expenses.xml"
+    },
+    {
+        "merged": "com.roomiesync.app-mergeDebugResources-38:/layout/item_expense.xml",
+        "source": "com.roomiesync.app-main-41:/layout/item_expense.xml"
+    },
+    {
+        "merged": "com.roomiesync.app-mergeDebugResources-38:/layout/fragment_profile.xml",
+        "source": "com.roomiesync.app-main-41:/layout/fragment_profile.xml"
+    },
+    {
+        "merged": "com.roomiesync.app-mergeDebugResources-38:/layout/fragment_chores.xml",
+        "source": "com.roomiesync.app-main-41:/layout/fragment_chores.xml"
+    }
+]

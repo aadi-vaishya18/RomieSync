@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_chore"
+            android:textColor="@color/ink"
+            android:textSize="19sp"
+            android:textStyle="bold"/>
+
+        <TextView style="@style/RoomieSync.FieldLabel" android:text="Chore"/>
+        <EditText
+            android:id="@+id/choreTitleInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card"
+            android:padding="12dp"
+            android:hint="e.g. Take out the trash"
+            android:inputType="textCapSentences"
+            android:textSize="14.5sp"/>
+
+        <TextView style="@style/RoomieSync.FieldLabel" android:text="Assign to"/>
+        <Spinner
+            android:id="@+id/choreAssigneeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card"
+            android:padding="12dp"/>
+
+        <TextView style="@style/RoomieSync.FieldLabel" android:text="Effort"/>
+        <RadioGroup
+            android:id="@+id/choreWeightGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/linen_deep"
+            android:padding="3dp">
+
+            <RadioButton
+                android:id="@+id/weightLight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Light"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="9dp"
+                android:checked="true"
+                android:background="@drawable/bg_segment_selector"
+                android:textColor="@color/segment_text_color"
+                android:textSize="13sp"
+                android:textStyle="bold"/>
+
+            <RadioButton
+                android:id="@+id/weightNormal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Normal"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="9dp"
+                android:background="@drawable/bg_segment_selector"
+                android:textColor="@color/segment_text_color"
+                android:textSize="13sp"
+                android:textStyle="bold"/>
+
+            <RadioButton
+                android:id="@+id/weightHeavy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Heavy"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="9dp"
+                android:background="@drawable/bg_segment_selector"
+                android:textColor="@color/segment_text_color"
+                android:textSize="13sp"
+                android:textStyle="bold"/>
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Heavier chores count for more on the workload bar — so a big weekly clean isn't treated the same as taking out the trash."
+            android:textSize="11sp"
+            android:textColor="@color/ink"
+            android:alpha="0.55"
+            android:layout_marginTop="6dp"
+            android:lineSpacingExtra="2dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/choreSaveBtn"
+            style="@style/RoomieSync.PrimaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/add_chore"
+            android:textAllCaps="false"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

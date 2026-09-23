@@ -1,0 +1,462 @@
+{
+  "users": [
+    {
+      "id": "f568bd17-ad75-45b1-a5ea-8c337e6cfc3f",
+      "name": "Adhiraj Jaysingh",
+      "email": "adhirajjaysingh@gmail.com",
+      "passwordHash": "$2b$10$LbZP8TYsFTGPapgViJmP.Oxb75OvAaxhKmlo/QOZbWOdcdBSaOWgG",
+      "createdAt": "2026-09-11T04:22:08.795Z"
+    },
+    {
+      "id": "7ceec0d8-0c59-4608-8903-89c33783b9f8",
+      "name": "Utsav",
+      "email": "utsav202201@gmail.com",
+      "passwordHash": "$2b$10$GGRUFg.tyZz2vdyEl9HMJOC.2OdS4dhMhXipPXXDpG05svnCcaJpm",
+      "createdAt": "2026-09-22T18:58:41.910Z"
+    },
+    {
+      "id": "b36f7bac-6006-4290-b422-20b421c38f3f",
+      "name": "Aman Vishwakarma",
+      "email": "av433401@gmail.com",
+      "passwordHash": "$2b$10$T6ehLImaFnX/1kq.dz0ogutueUVhfHq8zQz8S8rflEp6RuQJvvYSK",
+      "createdAt": "2026-09-22T19:02:45.627Z"
+    },
+    {
+      "id": "57b509e6-0c43-4896-a7d0-a83a39c1f9d2",
+      "name": "Aditya Vaishya",
+      "email": "vaishyaaditya2005@gmail.com",
+      "passwordHash": "$2b$10$5g.49Lf/mKUtVF.0EMnb7uL9suDpN2a9LoZbJrOQX3iBjnyhfm2S2",
+      "createdAt": "2026-09-22T19:06:21.856Z"
+    },
+    {
+      "id": "d5091e53-647d-4116-ba9d-f1e1eee0e31d",
+      "name": "AmitKumar Singh",
+      "email": "singhamitk7071@gmail.com",
+      "passwordHash": "$2b$10$NUzpOlBQZIntO0efzqaaAOAKuJrGYnTrq7FfzZEgySEhvY1idrNy2",
+      "createdAt": "2026-09-22T19:24:12.844Z"
+    },
+    {
+      "id": "cd174683-cd21-4419-8ac6-c9a38bd4f50d",
+      "name": "Siddharth Nair",
+      "email": "sidkn05@gmail.com",
+      "passwordHash": "$2b$10$YyMFISajhlwyV4RxGpouEO28h6Cl12NHUYvx6QFmqZMjGDnz4oQhK",
+      "createdAt": "2026-09-22T19:25:04.118Z"
+    },
+    {
+      "id": "8203b622-0f98-4835-9221-11a6588dd01e",
+      "name": "Aryan Amit Singh",
+      "email": "aryan2422k3@gmail.com",
+      "passwordHash": "$2b$10$xT2.aGH9aq1aJh8FXG4cVeQxgWGZHoO1nfG38qAgxubmtyf5gG/XS",
+      "createdAt": "2026-09-22T19:25:28.836Z"
+    }
+  ],
+  "hostels": [
+    {
+      "id": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "name": "Aspire",
+      "inviteCode": "DHBZGW",
+      "createdAt": "2026-09-11T05:06:47.636Z",
+      "createdBy": "f568bd17-ad75-45b1-a5ea-8c337e6cfc3f"
+    },
+    {
+      "id": "a8a48091-0167-4e53-a92a-a5f8ea0d312a",
+      "name": "DHBZGW",
+      "inviteCode": "U3Q78P",
+      "createdAt": "2026-09-22T19:25:22.481Z",
+      "createdBy": "cd174683-cd21-4419-8ac6-c9a38bd4f50d"
+    },
+    {
+      "id": "a0e09ebd-829b-4260-ad60-ce4690f0731d",
+      "name": "Stay",
+      "inviteCode": "TV8FTG",
+      "createdAt": "2026-09-22T19:25:50.691Z",
+      "createdBy": "8203b622-0f98-4835-9221-11a6588dd01e"
+    }
+  ],
+  "hostelMembers": [
+    {
+      "id": "ffc46f06-5a7e-4f9b-98ca-3c5dcfd0266b",
+      "userId": "f568bd17-ad75-45b1-a5ea-8c337e6cfc3f",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "role": "admin",
+      "joinedAt": "2026-09-11T05:06:47.639Z"
+    },
+    {
+      "id": "0dd00b0b-c471-4184-af66-079104d5d0ff",
+      "userId": "7ceec0d8-0c59-4608-8903-89c33783b9f8",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "role": "member",
+      "joinedAt": "2026-09-22T18:58:49.937Z"
+    },
+    {
+      "id": "6745ddfc-3172-4ee0-8cf6-ece23c7febb0",
+      "userId": "b36f7bac-6006-4290-b422-20b421c38f3f",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "role": "member",
+      "joinedAt": "2026-09-22T19:03:17.615Z"
+    },
+    {
+      "id": "e266f05a-41d9-48c1-af7d-b3652587bf3a",
+      "userId": "57b509e6-0c43-4896-a7d0-a83a39c1f9d2",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "role": "member",
+      "joinedAt": "2026-09-22T19:06:35.412Z"
+    },
+    {
+      "id": "8fced3b6-7dfb-4bca-8c5a-4cf2106f6c62",
+      "userId": "d5091e53-647d-4116-ba9d-f1e1eee0e31d",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "role": "member",
+      "joinedAt": "2026-09-22T19:24:36.349Z"
+    },
+    {
+      "id": "51bd493b-3b20-41eb-9051-d08abc314075",
+      "userId": "cd174683-cd21-4419-8ac6-c9a38bd4f50d",
+      "hostelId": "a8a48091-0167-4e53-a92a-a5f8ea0d312a",
+      "role": "admin",
+      "joinedAt": "2026-09-22T19:25:22.481Z"
+    },
+    {
+      "id": "53a40b4a-13e4-40f9-96f6-b1b65523f255",
+      "userId": "8203b622-0f98-4835-9221-11a6588dd01e",
+      "hostelId": "a0e09ebd-829b-4260-ad60-ce4690f0731d",
+      "role": "admin",
+      "joinedAt": "2026-09-22T19:25:50.693Z"
+    },
+    {
+      "id": "9411d73d-c118-4e9e-81eb-03f219801c1a",
+      "userId": "cd174683-cd21-4419-8ac6-c9a38bd4f50d",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "role": "member",
+      "joinedAt": "2026-09-22T19:26:21.472Z"
+    },
+    {
+      "id": "3bf65e09-277e-4e9b-8b78-e0c924bda351",
+      "userId": "8203b622-0f98-4835-9221-11a6588dd01e",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "role": "member",
+      "joinedAt": "2026-09-22T19:26:43.594Z"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "3906977c-2c3b-4dc5-9470-bfa0dc3073d6",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "name": "A101",
+      "createdAt": "2026-09-11T05:07:05.997Z"
+    },
+    {
+      "id": "442cebf3-ecd8-429f-ada1-9ee422d92cab",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "name": "A102",
+      "createdAt": "2026-09-11T05:07:15.344Z"
+    },
+    {
+      "id": "47af38a2-79f5-48c5-a8fa-80b325de81a0",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "name": "A103",
+      "createdAt": "2026-09-11T05:07:23.561Z"
+    },
+    {
+      "id": "e53f1065-31ac-420b-8ca0-d94f2b1624d6",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "name": "A201",
+      "createdAt": "2026-09-11T05:07:35.467Z"
+    },
+    {
+      "id": "b7ef5254-1481-4e73-a1af-8ddf26109333",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "name": "A202",
+      "createdAt": "2026-09-11T05:09:06.937Z"
+    },
+    {
+      "id": "75edbaae-29f9-46d7-b7e3-e5af9b5acd49",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "name": "A203",
+      "createdAt": "2026-09-11T05:09:11.922Z"
+    },
+    {
+      "id": "c97cae4a-252a-42a8-b740-85fefd43079d",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "name": "A301",
+      "createdAt": "2026-09-11T05:09:19.935Z"
+    },
+    {
+      "id": "d2595240-be54-46ba-af51-d0da91447d33",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "name": "A303",
+      "createdAt": "2026-09-11T05:09:28.622Z"
+    },
+    {
+      "id": "0cfa6ea7-45eb-4fe5-ae1d-6f95e6531af1",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "name": "A401",
+      "createdAt": "2026-09-11T05:09:38.078Z"
+    },
+    {
+      "id": "45cef726-340c-4209-8499-322b7cb50523",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "name": "A402",
+      "createdAt": "2026-09-11T05:09:43.217Z"
+    },
+    {
+      "id": "dc299be5-1cc2-4bcc-b46d-33e7b134e9fe",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "name": "A403",
+      "createdAt": "2026-09-11T05:09:48.122Z"
+    },
+    {
+      "id": "10c98abb-d1e3-4242-a029-4e6e01e7ceef",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "name": "B104",
+      "createdAt": "2026-09-11T05:09:57.329Z"
+    },
+    {
+      "id": "4ada454d-e6d4-4756-bda7-0ac848968d51",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "name": "B105",
+      "createdAt": "2026-09-11T05:10:11.469Z"
+    }
+  ],
+  "roomMembers": [
+    {
+      "id": "11218481-6783-416a-8aba-51ae839f289b",
+      "roomId": "3906977c-2c3b-4dc5-9470-bfa0dc3073d6",
+      "userId": "7ceec0d8-0c59-4608-8903-89c33783b9f8",
+      "joinedAt": "2026-09-22T18:59:07.729Z"
+    },
+    {
+      "id": "1325131c-88f8-4076-8679-69b69d672640",
+      "roomId": "3906977c-2c3b-4dc5-9470-bfa0dc3073d6",
+      "userId": "b36f7bac-6006-4290-b422-20b421c38f3f",
+      "joinedAt": "2026-09-22T19:04:54.891Z"
+    },
+    {
+      "id": "8b8ebf2e-b1d7-4267-8670-525609efc062",
+      "roomId": "3906977c-2c3b-4dc5-9470-bfa0dc3073d6",
+      "userId": "57b509e6-0c43-4896-a7d0-a83a39c1f9d2",
+      "joinedAt": "2026-09-22T19:06:38.920Z"
+    },
+    {
+      "id": "87aebfab-ec5e-4ea4-8842-86f6ccdf96d9",
+      "roomId": "3906977c-2c3b-4dc5-9470-bfa0dc3073d6",
+      "userId": "d5091e53-647d-4116-ba9d-f1e1eee0e31d",
+      "joinedAt": "2026-09-22T19:24:42.148Z"
+    },
+    {
+      "id": "be385bdb-6b06-4354-958d-bc5d42a6ebd1",
+      "roomId": "442cebf3-ecd8-429f-ada1-9ee422d92cab",
+      "userId": "cd174683-cd21-4419-8ac6-c9a38bd4f50d",
+      "joinedAt": "2026-09-22T19:27:08.597Z"
+    },
+    {
+      "id": "d41854d7-765a-406b-ad89-5c8ff342f55b",
+      "roomId": "442cebf3-ecd8-429f-ada1-9ee422d92cab",
+      "userId": "8203b622-0f98-4835-9221-11a6588dd01e",
+      "joinedAt": "2026-09-22T19:27:18.300Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "7c175702-a753-493c-bb2e-fcf2de2b3121",
+      "roomId": "3906977c-2c3b-4dc5-9470-bfa0dc3073d6",
+      "title": "Clean Kitchen",
+      "completed": 1,
+      "createdBy": "7ceec0d8-0c59-4608-8903-89c33783b9f8",
+      "createdAt": "2026-09-22T18:59:27.734Z",
+      "updatedAt": "2026-09-22T19:00:43.552Z"
+    },
+    {
+      "id": "16bb87da-453e-4cd7-8962-b44f363e185d",
+      "roomId": "3906977c-2c3b-4dc5-9470-bfa0dc3073d6",
+      "title": "AC repair",
+      "completed": 1,
+      "createdBy": "7ceec0d8-0c59-4608-8903-89c33783b9f8",
+      "createdAt": "2026-09-22T19:00:09.982Z",
+      "updatedAt": "2026-09-22T19:00:44.299Z"
+    },
+    {
+      "id": "89dfbd8c-1b0d-43ae-9e1a-8888b124c843",
+      "roomId": "3906977c-2c3b-4dc5-9470-bfa0dc3073d6",
+      "title": "Safety Door not working",
+      "completed": 1,
+      "createdBy": "7ceec0d8-0c59-4608-8903-89c33783b9f8",
+      "createdAt": "2026-09-22T19:00:40.135Z",
+      "updatedAt": "2026-09-22T19:00:44.829Z"
+    },
+    {
+      "id": "647e631e-c6b9-4f0a-a0bd-6cb0559b8a3b",
+      "roomId": "3906977c-2c3b-4dc5-9470-bfa0dc3073d6",
+      "title": "Water plant please",
+      "completed": 0,
+      "createdBy": "d5091e53-647d-4116-ba9d-f1e1eee0e31d",
+      "createdAt": "2026-09-22T19:26:18.654Z",
+      "updatedAt": "2026-09-22T19:26:18.654Z"
+    },
+    {
+      "id": "4f2f7f62-885d-473a-9f2c-15e6b8e742e6",
+      "roomId": "3906977c-2c3b-4dc5-9470-bfa0dc3073d6",
+      "title": "Wifi not working properly",
+      "completed": 0,
+      "createdBy": "d5091e53-647d-4116-ba9d-f1e1eee0e31d",
+      "createdAt": "2026-09-22T19:31:04.990Z",
+      "updatedAt": "2026-09-22T19:31:04.990Z"
+    }
+  ],
+  "groupMessages": [
+    {
+      "id": "d65f7f54-c648-4424-ae05-7c99b3bca3bb",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "f568bd17-ad75-45b1-a5ea-8c337e6cfc3f",
+      "message": "Hello Bachon !!",
+      "createdAt": "2026-09-22T18:53:20.117Z"
+    },
+    {
+      "id": "9354813a-4cc5-4db6-b41d-8c350b1ead6d",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "7ceec0d8-0c59-4608-8903-89c33783b9f8",
+      "message": "Hello",
+      "createdAt": "2026-09-22T19:01:10.477Z"
+    },
+    {
+      "id": "48e83182-5918-4dfa-b436-884bea9dacd5",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "f568bd17-ad75-45b1-a5ea-8c337e6cfc3f",
+      "message": "welcome Utsav",
+      "createdAt": "2026-09-22T19:03:40.533Z"
+    },
+    {
+      "id": "5d28eccd-a687-4122-b115-46eba9676ab3",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "f568bd17-ad75-45b1-a5ea-8c337e6cfc3f",
+      "message": "Welcome Aman!!",
+      "createdAt": "2026-09-22T19:03:55.015Z"
+    },
+    {
+      "id": "440915d6-6d2f-4811-8d10-374c21c1cc09",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "b36f7bac-6006-4290-b422-20b421c38f3f",
+      "message": "Hello",
+      "createdAt": "2026-09-22T19:04:15.035Z"
+    },
+    {
+      "id": "7888aadb-5241-4a12-9fc5-88f428a929bb",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "f568bd17-ad75-45b1-a5ea-8c337e6cfc3f",
+      "message": "Aman aap room no A101 mein add ho jao",
+      "createdAt": "2026-09-22T19:04:39.241Z"
+    },
+    {
+      "id": "f671ba6a-a4ca-428f-9d11-332a9896ad88",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "b36f7bac-6006-4290-b422-20b421c38f3f",
+      "message": "Done 👍",
+      "createdAt": "2026-09-22T19:05:09.982Z"
+    },
+    {
+      "id": "687b8950-0cdf-4319-8eaa-e75820f001e1",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "f568bd17-ad75-45b1-a5ea-8c337e6cfc3f",
+      "message": "aaj ka kaam toh utsav n kar liya hai",
+      "createdAt": "2026-09-22T19:05:36.014Z"
+    },
+    {
+      "id": "3c833799-483a-4450-8040-e4020d381723",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "f568bd17-ad75-45b1-a5ea-8c337e6cfc3f",
+      "message": "kal sab aap ko krna hoga",
+      "createdAt": "2026-09-22T19:05:50.262Z"
+    },
+    {
+      "id": "8667df45-52b3-47b5-ab1b-f3dbab1da7c2",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "b36f7bac-6006-4290-b422-20b421c38f3f",
+      "message": "Ok sir",
+      "createdAt": "2026-09-22T19:06:35.403Z"
+    },
+    {
+      "id": "51e06c23-c018-4b43-9e82-455af4eab242",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "57b509e6-0c43-4896-a7d0-a83a39c1f9d2",
+      "message": "Hello",
+      "createdAt": "2026-09-22T19:06:55.996Z"
+    },
+    {
+      "id": "e0eea343-8000-4ab6-93e7-124c8c8968ba",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "b36f7bac-6006-4290-b422-20b421c38f3f",
+      "message": "Hi",
+      "createdAt": "2026-09-22T19:07:05.241Z"
+    },
+    {
+      "id": "56490e62-5ccf-4896-a5ea-abbcaf57e311",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "b36f7bac-6006-4290-b422-20b421c38f3f",
+      "message": "Aditya aap kis room me ho ?",
+      "createdAt": "2026-09-22T19:07:26.721Z"
+    },
+    {
+      "id": "a24e9dd2-3835-4608-a801-e61cccc5abe3",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "57b509e6-0c43-4896-a7d0-a83a39c1f9d2",
+      "message": "Aapke hi room mein",
+      "createdAt": "2026-09-22T19:19:45.282Z"
+    },
+    {
+      "id": "463e2595-6f53-481d-b877-6f3dd89efad2",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "b36f7bac-6006-4290-b422-20b421c38f3f",
+      "message": "Oh wow",
+      "createdAt": "2026-09-22T19:21:46.536Z"
+    },
+    {
+      "id": "268173e7-5236-4eaf-a27d-51c1792184bf",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "d5091e53-647d-4116-ba9d-f1e1eee0e31d",
+      "message": "Hi Aditya",
+      "createdAt": "2026-09-22T19:26:29.883Z"
+    },
+    {
+      "id": "98d68bd9-2cda-4b9a-8e7e-f466385cd707",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "d5091e53-647d-4116-ba9d-f1e1eee0e31d",
+      "message": "What a website you have created 10 lpa is fix",
+      "createdAt": "2026-09-22T19:26:47.776Z"
+    },
+    {
+      "id": "2ed1fa14-6453-44f1-829b-b08db8fa472a",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "d5091e53-647d-4116-ba9d-f1e1eee0e31d",
+      "message": "Ye Siddharth idhar kya kar raha hai",
+      "createdAt": "2026-09-22T19:27:08.964Z"
+    },
+    {
+      "id": "510293ab-ee15-4637-9dd0-712cd004a535",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "d5091e53-647d-4116-ba9d-f1e1eee0e31d",
+      "message": "Please shift him he is in some another hostel",
+      "createdAt": "2026-09-22T19:27:53.058Z"
+    },
+    {
+      "id": "6a3c0ee8-4c9d-49db-9c45-e0f2c3d892d8",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "f568bd17-ad75-45b1-a5ea-8c337e6cfc3f",
+      "message": "Amitkumar",
+      "createdAt": "2026-09-22T19:32:41.145Z"
+    },
+    {
+      "id": "65149c03-c9e8-476c-b089-acac4ea55423",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "f568bd17-ad75-45b1-a5ea-8c337e6cfc3f",
+      "message": "Quad sharing nhi hai",
+      "createdAt": "2026-09-22T19:32:50.456Z"
+    },
+    {
+      "id": "64d637fd-3a8f-4fcc-8197-628fa9897527",
+      "hostelId": "0405c3ae-1473-4504-985f-10a3e655df7e",
+      "userId": "f568bd17-ad75-45b1-a5ea-8c337e6cfc3f",
+      "message": "Please room no 102 mein shift ho jao",
+      "createdAt": "2026-09-22T19:33:10.250Z"
+    }
+  ]
+}

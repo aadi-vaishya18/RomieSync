@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.RoomieSync" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/harbor</item>
+        <item name="colorPrimaryVariant">@color/harbor_dark</item>
+        <item name="colorOnPrimary">@color/paper</item>
+        <item name="colorSecondary">@color/ember</item>
+        <item name="colorSecondaryVariant">@color/ember_dark</item>
+        <item name="colorOnSecondary">@color/paper</item>
+        <item name="android:statusBarColor">@color/harbor_dark</item>
+        <item name="android:windowBackground">@color/linen</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+    </style>
+
+    <style name="Theme.RoomieSync.BottomSheet" parent="Theme.MaterialComponents.DayNight.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/RoomieSync.BottomSheetStyle</item>
+    </style>
+
+    <style name="RoomieSync.BottomSheetStyle" parent="Widget.MaterialComponents.BottomSheet.Modal">
+        <item name="shapeAppearanceOverlay">@style/RoomieSync.BottomSheetShape</item>
+        <item name="backgroundTint">@color/linen</item>
+    </style>
+
+    <style name="RoomieSync.BottomSheetShape" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">22dp</item>
+        <item name="cornerSizeTopRight">22dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <style name="RoomieSync.CardText" parent="">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/ink</item>
+    </style>
+
+    <style name="RoomieSync.OutlineButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/harbor</item>
+        <item name="android:textColor">@color/harbor</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+
+    <style name="RoomieSync.PrimaryButton" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/harbor</item>
+        <item name="cornerRadius">12dp</item>
+    </style>
+
+    <style name="RoomieSync.SectionLabel" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">12.5sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/ink</item>
+        <item name="android:alpha">0.8</item>
+        <item name="android:letterSpacing">0.04</item>
+        <item name="android:layout_marginTop">14dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <style name="RoomieSync.EmptyState" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/ink</item>
+        <item name="android:alpha">0.55</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">28dp</item>
+        <item name="android:paddingBottom">28dp</item>
+    </style>
+
+    <style name="RoomieSync.FieldLabel" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">11.5sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/ink</item>
+        <item name="android:alpha">0.65</item>
+        <item name="android:letterSpacing">0.03</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+    </style>
+</resources>

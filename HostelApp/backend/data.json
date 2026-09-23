@@ -1,0 +1,113 @@
+{
+  "users": [
+    {
+      "id": "43345cc1-37ea-48bd-853d-38cbc27d2189",
+      "name": "Adhiraj Jaysingh",
+      "email": "adhirajjaysingh@gmail.com",
+      "passwordHash": "$2b$10$TrSGIwYz2PZVe3MX5IBvcOmwl4JSOhcI5oDvJq4kR6LwvmUWIVzwy",
+      "createdAt": "2026-09-08T05:02:18.952Z"
+    },
+    {
+      "id": "16c5666f-19e2-4f61-a29d-6333fc946a6e",
+      "name": "Aditya Vaishya",
+      "email": "vaishyaaditya2005@gmail.com",
+      "passwordHash": "$2b$10$/ADRX979Teo7lZ6JsqHTgu4BaEs9ydBD18abiTJ6FFkInGhjQZKum",
+      "createdAt": "2026-09-08T05:06:17.403Z"
+    }
+  ],
+  "hostels": [
+    {
+      "id": "3388d89c-8394-47e5-bdb2-e53d7af4a5a6",
+      "name": "TCET Aspire",
+      "inviteCode": "BLK4ZE",
+      "createdAt": "2026-09-08T05:02:42.019Z",
+      "createdBy": "43345cc1-37ea-48bd-853d-38cbc27d2189"
+    }
+  ],
+  "hostelMembers": [
+    {
+      "id": "77090b7a-5af3-46c5-be28-62ec0151d710",
+      "userId": "43345cc1-37ea-48bd-853d-38cbc27d2189",
+      "hostelId": "3388d89c-8394-47e5-bdb2-e53d7af4a5a6",
+      "role": "admin",
+      "joinedAt": "2026-09-08T05:02:42.021Z"
+    },
+    {
+      "id": "fb0cd34e-5dd6-4c4f-a6a7-7cd9f54d5d10",
+      "userId": "16c5666f-19e2-4f61-a29d-6333fc946a6e",
+      "hostelId": "3388d89c-8394-47e5-bdb2-e53d7af4a5a6",
+      "role": "member",
+      "joinedAt": "2026-09-08T05:06:37.874Z"
+    }
+  ],
+  "rooms": [
+    {
+      "id": "47199985-4814-46da-8caf-c9f944c1e227",
+      "hostelId": "3388d89c-8394-47e5-bdb2-e53d7af4a5a6",
+      "name": "101",
+      "createdAt": "2026-09-08T05:03:43.323Z"
+    },
+    {
+      "id": "f1e11388-74e7-454e-8e9f-02ea5cad158a",
+      "hostelId": "3388d89c-8394-47e5-bdb2-e53d7af4a5a6",
+      "name": "102",
+      "createdAt": "2026-09-08T05:03:48.792Z"
+    },
+    {
+      "id": "db040577-ba35-4019-b5bb-9b3d3b0aadf8",
+      "hostelId": "3388d89c-8394-47e5-bdb2-e53d7af4a5a6",
+      "name": "201",
+      "createdAt": "2026-09-08T05:03:52.675Z"
+    },
+    {
+      "id": "49a6945c-90eb-4c8a-8c4b-16fe6f6a6271",
+      "hostelId": "3388d89c-8394-47e5-bdb2-e53d7af4a5a6",
+      "name": "202",
+      "createdAt": "2026-09-08T05:03:56.810Z"
+    },
+    {
+      "id": "c93be3dd-9b59-4029-920a-9ac1df6562b6",
+      "hostelId": "3388d89c-8394-47e5-bdb2-e53d7af4a5a6",
+      "name": "301",
+      "createdAt": "2026-09-08T05:04:08.273Z"
+    },
+    {
+      "id": "f9014ba3-94d5-40f7-bb36-6002f5901e06",
+      "hostelId": "3388d89c-8394-47e5-bdb2-e53d7af4a5a6",
+      "name": "302",
+      "createdAt": "2026-09-08T05:04:17.623Z"
+    }
+  ],
+  "roomMembers": [
+    {
+      "id": "cf5b5089-e8c2-401f-b0bb-c9bcb9d256f6",
+      "roomId": "47199985-4814-46da-8caf-c9f944c1e227",
+      "userId": "16c5666f-19e2-4f61-a29d-6333fc946a6e",
+      "joinedAt": "2026-09-08T05:06:52.199Z"
+    }
+  ],
+  "tasks": [],
+  "groupMessages": [
+    {
+      "id": "078ed9a3-f769-43ce-8bd0-3ef150d40961",
+      "hostelId": "3388d89c-8394-47e5-bdb2-e53d7af4a5a6",
+      "userId": "43345cc1-37ea-48bd-853d-38cbc27d2189",
+      "message": "Hey Aditya",
+      "createdAt": "2026-09-08T05:07:37.875Z"
+    },
+    {
+      "id": "e682dd0b-5953-42e9-a42e-5dbba8cb72a7",
+      "hostelId": "3388d89c-8394-47e5-bdb2-e53d7af4a5a6",
+      "userId": "43345cc1-37ea-48bd-853d-38cbc27d2189",
+      "message": "Welcome to Aspire",
+      "createdAt": "2026-09-08T05:07:54.686Z"
+    },
+    {
+      "id": "cbf1cb59-583b-4acb-8d5a-13c7f46e7cd7",
+      "hostelId": "3388d89c-8394-47e5-bdb2-e53d7af4a5a6",
+      "userId": "16c5666f-19e2-4f61-a29d-6333fc946a6e",
+      "message": "Thanks Sir!",
+      "createdAt": "2026-09-08T05:08:13.726Z"
+    }
+  ]
+}

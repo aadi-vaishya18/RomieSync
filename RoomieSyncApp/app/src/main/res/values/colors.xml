@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ink">#24303A</color>
+    <color name="harbor">#3A5A78</color>
+    <color name="harbor_dark">#2C4560</color>
+    <color name="harbor_light">#4A6D8C</color>
+    <color name="ember">#E08E45</color>
+    <color name="ember_dark">#C97730</color>
+    <color name="linen">#F4EFE6</color>
+    <color name="linen_deep">#EAE2D2</color>
+    <color name="moss">#2E7D5B</color>
+    <color name="clay">#B8442F</color>
+    <color name="paper">#FFFFFF</color>
+    <color name="thread">#C9BFA8</color>
+    <color name="ink_faint">#9AA1A8</color>
+
+    <color name="avatar_1">#3A5A78</color>
+    <color name="avatar_2">#E08E45</color>
+    <color name="avatar_3">#2E7D5B</color>
+    <color name="avatar_4">#8A5FB8</color>
+    <color name="avatar_5">#C25B7C</color>
+</resources>
